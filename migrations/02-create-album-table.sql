@@ -1,6 +1,9 @@
 CREATE TABLE Albums (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  year SMALLINT NOT NULL,
-  artistId INT REFERENCES Artists (id) NOT NULL
-  );
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    year INT NOT NULL,
+    artistId INT NOT NULL,
+
+    CONSTRAINT FK_artist_info FOREIGN KEY (artistId)
+    REFERENCES artists(id)
+);

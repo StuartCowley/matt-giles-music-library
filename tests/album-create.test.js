@@ -31,7 +31,6 @@ describe('create Album', () => {
       } = await db.query(`SELECT * FROM Albums WHERE id = ${body.id}`);
       expect(albumsData.name).to.equal('Currents');
       expect(albumsData.year).to.equal(2015);
-      // expect(albumData.artistId).to.equal(artist.id);
     });
   });
 });

@@ -1,13 +1,15 @@
-const db = require('../db/index.js');
+const db = require('../../src/db/index.js');
+
 const createAlbum = async (req, res) => {
-  const { artistId } = req.params;
   const { name, year } = req.body;
+  const { id } = req.params;
+
   try {
     const {
       rows: [album],
     } = await db.query(
-      'INSERT INTO Albums (name, year, artistId) VALUES ($1, $2, $3) RETURNING *',
-      [name, year, artistId]
+      'INSERT INTO Albums (name, year, artistid) VALUES ($1, $2, $3) RETURNING *',
+      [name, year, id]
     );
     res.status(201).json(album);
   } catch (err) {
