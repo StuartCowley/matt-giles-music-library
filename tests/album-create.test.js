@@ -1,4 +1,3 @@
-// tests/artist-create.js
 const { expect } = require('chai');
 const request = require('supertest');
 const db = require('../src/db');
@@ -12,7 +11,6 @@ describe('create Album', () => {
       ['Tame Impala', 'rock']
     );
     artist = rows[0];
-    console.log(artist.id, artist.name, artist.genre);
   });
   describe('POST', () => {
     it('creates a new artist in the database under artist', async () => {
@@ -31,6 +29,7 @@ describe('create Album', () => {
       } = await db.query(`SELECT * FROM Albums WHERE id = ${body.id}`);
       expect(albumsData.name).to.equal('Currents');
       expect(albumsData.year).to.equal(2015);
+      expect(albumsData.artistid).to.equal(artist.id);
     });
   });
 });
